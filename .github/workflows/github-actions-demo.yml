@@ -26,7 +26,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build and Publish package
-      run: mvn --batch-mode deploy -Drevision=${{ steps.next_tag.outputs.tag }}
+      run: mvn --batch-mode deploy -Drevision=${{ steps.next_tag.outputs.new_tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
     - name: Create a Release
@@ -34,7 +34,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
       with:
-        args: ${{ steps.next_tag.outputs.tag }}
+        args: ${{ steps.next_tag.outputs.new_tag }}
     - name: Tagging release
       uses: anothrNick/github-tag-action@1.36.0
       env:
