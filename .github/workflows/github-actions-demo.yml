@@ -25,6 +25,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build and Publish package
-      run: mvn --batch-mode deploy -Drevision=${new}
+      run: mvn --batch-mode deploy -Drevision=${name}
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
