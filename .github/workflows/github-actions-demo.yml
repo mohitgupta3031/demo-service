@@ -29,3 +29,14 @@ jobs:
       run: mvn --batch-mode deploy -Drevision=${{ steps.next_tag.outputs.tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      with:
+        args: ${{ steps.next_tag.outputs.tag }}
+    - name: Tagging release
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        WITH_V: true
