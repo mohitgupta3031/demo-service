@@ -17,7 +17,6 @@ jobs:
       uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        TAG_CONTEXT: branch
         WITH_V: true
         DRY_RUN: true
     - name: Set up JDK 11
@@ -26,6 +25,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build and Publish package
-      run: mvn --batch-mode deploy -Drevision=${name}
+      run: mvn --batch-mode deploy -Drevision=${tag}
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
